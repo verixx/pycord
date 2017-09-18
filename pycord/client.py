@@ -1,4 +1,4 @@
-'''
+"""
 MIT License
 
 Copyright (c) 2017 verixx / king1600
@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-'''
+"""
 
 
 import asyncio
@@ -37,7 +37,7 @@ import time
 class Client(Emitter):
     def __init__(self, shard_count=-1):
         super().__init__()
-        self.token = ''
+        self.token = ""
         self.is_bot = True
         self.loop = get_event_loop()
         self.running = asyncio.Event()
@@ -65,14 +65,14 @@ class Client(Emitter):
         self.token = self.api.token = token
 
         # get gateway info
-        endpoint = '/gateway'
+        endpoint = "/gateway"
         if self.is_bot:
-            endpoint += '/bot'
+            endpoint += "/bot"
         info = await self.api.get(endpoint)
-        url = info.get('url')
+        url = info.get("url")
 
         # get amouont of shards
-        shard_count = info.get('shards', 1)
+        shard_count = info.get("shards", 1)
         if len(self.shards) < 1:
             self.shards = list(range(shard_count))
         else:
